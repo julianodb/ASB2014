@@ -25,6 +25,8 @@ _______________________________________________________________________________
 #include <wfdb/wfdb.h>
 #include <wfdb/ecgcodes.h>
 
+void gqrs(WFDB_Time from, WFDB_Time to);
+char *prog_name(char *p);
 void *gcalloc(size_t nmemb, size_t size);
 void cleanup(int status);
 
@@ -124,46 +126,29 @@ main(int argc, char **argv)
     */
 
     // algorithm specific calls
-    state = RUNNING;
-    t = t0 - dt4;
-    gqrs(t0, tf);		/* run the detector and collect output */
+    gqrs(0, 0);		/* run the detector and collect output */
 
-    printf(" %s\n", timstr(strtim("i")));
     cleanup(0);
 }
 
 void gqrs(WFDB_Time from, WFDB_Time to)
 {
-			    annot.subtyp = 1;
-			if (state == RUNNING) {
-			    int qsize;
 
-			    annot.time = p->time - dt2;
-			    annot.anntyp = NORMAL;
-			    annot.chan = sig;
-			    qsize = p->amp * 10.0 / qthr;
-			    if (qsize > 127) qsize = 127;
-			    annot.num = qsize;
-			    putann(0, &annot);
-			    annot.time += dt2;
-			}
-			if (tw) {
-			    static WFDB_Annotation tann;
+for(;from<strtim("e");from++) {
 
-			    tann.time = tw->time - dt2;
-			    if (debug && state == RUNNING) {
-				tann.anntyp = TWAVE;
-				tann.chan = sig+1;
-				tann.num = rtdmin;
-				tann.subtyp = (tann.time > annot.time + rtmean);
-				tann.aux = NULL;
-				putann(0, &tann);
-			    }
-			r = p; q = NULL; qamp = 0; annot.subtyp = 0;
-	    annot.anntyp = NORMAL;
-	    annot.chan = sig;
-	    annot.time = p->time;
-	    putann(0, &annot);
+	if(from%sps==0) {
+		annot.subtyp = 1;
+		annot.time = from;
+		annot.anntyp = NORMAL;
+		annot.chan = 1;
+		annot.num = 127;
+		putann(0,&annot);	
+		printf("%d\n",sample(1,from));
+	}
+
+
+}
+
 }
 
 /* prog_name() extracts this program's name from argv[0], for use in error and

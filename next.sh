@@ -11,7 +11,7 @@
 # it analyzes record 100 using 'gqrs', and saves the results as an annotation
 # file named '100.qrs'.
 
-./gqrs -r $1
+./main -r $1
 
 # In your entry, you should replace the command above with one or more commands
 # that will produce a '.qrs' annotation file using your own code.

@@ -9,7 +9,7 @@
 # the 'sources' subdirectory.  The command below compiles the C program into an
 # executable binary named 'gqrs', linking it with the WFDB library.
 
-cc -o gqrs -O sources/gqrs.c -lwfdb
+cc -o main -O sources/main.c -lwfdb
 
 # In your entry, you should replace the command above with one or more commands
 # that compile your code if necessary, so that it can be run by 'next.sh'.  You
