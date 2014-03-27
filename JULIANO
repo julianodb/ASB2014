@@ -1,0 +1,3 @@
+wave -r 101 -Wfsdb -a qrs
+(command to view waveform with annotation)
+

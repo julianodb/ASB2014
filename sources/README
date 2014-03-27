@@ -1,0 +1,19 @@
+file: README		G. Moody		3 December 2013
+
+The code in this directory is provided as part of a sample entry for the
+PhysioNet/CinC Challenge 2014.  It comes from the WFDB Software Package
+(see http://physionet.org/physiotools/wfdb.shtml), and it requires the
+WFDB library (included in that package).
+
+Although this sample entry conforms to the rules of the Challenge, a successful
+entry will need to do more;  in particular, this code does not attempt to
+analyse non-ECG signals (which will be useful when the ECG is absent or of poor
+quality) and (as used in this sample entry) only one ECG signal is analyzed.
+
+The file 'gqrs.conf' is not used in this sample entry.  If you wish to use
+it, change '../next.sh' so that the command
+   ./gqrs -r $1
+becomes
+   ./gqrs -r $1 -c gqrs.conf
+Doing so will change the behavior of gqrs only if you modify gqrs.conf;  its
+current contents reflect gqrs's default settings.
